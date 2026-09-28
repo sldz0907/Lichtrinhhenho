@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme {
+  --color-plum: #6E304D;
+  --color-rose: #C9859B;
+  --color-champagne: #D6AE62;
+  --color-ivory: #FFF9F5;
+  --color-lavender: #F4E7F1;
+  --color-gold: #D6AE62;
+  
+  --font-serif: "Fraunces", serif;
+  --font-sans: "DM Sans", sans-serif;
+  --font-script: "Alex Brush", cursive;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-plum);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background-color: rgba(255, 249, 245, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(214, 174, 98, 0.3);
+    box-shadow: 0 10px 40px rgba(201, 133, 155, 0.15);
+  }
+  
+  .glass-capsule {
+    background-color: rgba(255, 249, 245, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(214, 174, 98, 0.4);
+    box-shadow: 
+      inset 0 0 15px rgba(255, 255, 255, 0.8),
+      0 8px 24px rgba(201, 133, 155, 0.1);
+  }
+  
+  /* Layered typography effect for hero */
+  .layered-text {
+    position: relative;
+    color: var(--color-plum);
+    -webkit-text-stroke: 1px var(--color-champagne);
+    text-shadow: 
+      0 0 0 var(--color-plum),
+      3px 3px 0 var(--color-champagne),
+      8px 8px 15px var(--color-lavender);
+  }
+  
+  .layered-text-gradient {
+    background: linear-gradient(135deg, var(--color-rose) 0%, var(--color-champagne) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px rgba(214, 174, 98, 0.6);
+    filter: drop-shadow(4px 4px 0px rgba(214, 174, 98, 0.3)) drop-shadow(8px 8px 10px var(--color-lavender));
+  }
+}
+
+/* Atmospheric Background Animation */
+.bg-magical {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: 
+    radial-gradient(ellipse at 20% 40%, rgba(201, 133, 155, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(244, 231, 241, 0.4) 0%, transparent 60%),
+    radial-gradient(circle at 50% 80%, rgba(214, 174, 98, 0.1) 0%, transparent 50%);
+  filter: blur(40px);
+  animation: bgPulse 20s ease-in-out infinite alternate;
+}
+
+@keyframes bgPulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+/* Button Hover Sweep */
+.btn-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%; height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-20deg);
+  transition: all 0.7s ease;
+}
+.btn-sweep:hover::after {
+  left: 200%;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
